@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title></title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+  <!-- <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> -->
+  <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> -->
+  <!-- <script src="https://cdn.jsdelivr.net/npm/vue"></script> -->
+</head>
+<body>
+<pre></pre>
+<script>
+var cl = console.log;
+var data = {
+  "from": "Someone",
+  "description": "Something",
+  "amount": 11.2,
+  "date": "2017-11-13T29:42:00.000Z"
+};
+
+$("pre").text(JSON.stringify(data, null, 2));
+$("pre").append("\n\n"+JSON.stringify(data));
+
+$.ajax({
+  type: "PUT",
+  url: "/api/balance/add",
+  // url: "http://localhost:8080/api/balance/add",
+  data: JSON.stringify(data),
+  dataType: "text"
+})
+.done((a,b,c)=>{
+  cl(a,b,c);
+});
+
+</script>
+</body>
+</html>
