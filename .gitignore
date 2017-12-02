@@ -3,3 +3,4 @@ node_modules
 Dockerfile
 build_image.sh
 run_docker.sh
+pages.sh
