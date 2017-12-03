@@ -8,11 +8,20 @@ module.exports = {
   ,components: { Transactions, AddTransaction }
   ,data(){
     return {
-      account: null
+       account: null
+      ,mode: "overview"
     };
   }
   ,beforeMount(){
     this.account = account;
+  }
+  ,methods: {
+    showAddTransaction(){
+      this.mode = "add-transaction";
+    }
+    ,showOverview(){
+      this.mode = "overview";
+    }
   }
 };
 
@@ -37,10 +46,13 @@ module.exports = {
   </div> <!-- col -->
 
   <div class="col col-lg-6 col-lg-offset-3">
-    <add-transaction :account="account" />
+    <button @click="showAddTransaction()"
+      v-if="mode == 'overview'"
+      class="btn btn-lg btn-primary">Add transaction</button>
+    <add-transaction v-if="mode == 'add-transaction'"/>
   </div> <!-- col -->
 
-  <div class="col col-lg-6 col-lg-offset-3">
+  <div v-if="mode == 'overview'" class="col col-lg-6 col-lg-offset-3">
     <transactions :account="account" />
   </div> <!-- col -->
 

@@ -6,10 +6,12 @@
   "private": true,
   "scripts": {
     "watchify": "watchify -vd -p browserify-hmr -e src/main.js -o www/dist/build.js",
-    "api": "node apiserver/server.js",
+    "api": "nodemon apiserver/server.js",
+    "api2": "node apiserver/server.js",
     "serve": "http-server www -o -p 8888 -c-1 -a localhost -P http://localhost:8080",
+    "serve2": "http-server www -p 8888 -c-1 -a localhost -P http://localhost:8080",
     "dev": "npm-run-all --parallel api watchify serve",
-    "prod": "npm-run-all --parallel api serve",
+    "prod": "npm-run-all --parallel api2 serve2",
     "lint": "eslint --ext .js,.vue src",
     "build": "cross-env NODE_ENV=production browserify -g envify -p [ vueify/plugins/extract-css -o www/dist/build.css ] -e src/main.js | uglifyjs -c warnings=false -m > www/dist/build.js"
   },
@@ -43,6 +45,7 @@
     "eslint-plugin-promise": "^2.0.1",
     "eslint-plugin-standard": "^2.0.0",
     "eslint-plugin-vue": "^2.1.0",
+    "nodemon": "^1.12.1",
     "npm-run-all": "^2.3.0",
     "proxyquireify": "^3.0.1",
     "uglify-js": "^2.5.0",

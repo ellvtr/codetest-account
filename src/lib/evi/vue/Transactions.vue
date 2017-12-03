@@ -1,7 +1,7 @@
 <script>
 module.exports = {
    name: "transactions"
-  ,props: [ "account" ]
+  ,props: ["account"]
   ,data(){
     return {
       msg: "Some Message"

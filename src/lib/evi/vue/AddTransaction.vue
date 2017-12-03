@@ -1,11 +1,31 @@
 <script>
+const cl = console.log; cl;
+const account = require("../account.singleton.js");
+
 module.exports = {
-   name: "transactions"
-  ,props: [ "account" ]
+   name: "add-transaction"
   ,data(){
     return {
-      msg: "Some Message"
+       account: null
+      ,mode: "to"
+      ,input: {
+         from: ""
+        ,to: ""
+        ,description: ""
+        ,amount: null
+        ,date: ""
+      }
     };
+  }
+  ,methods: {
+    submit(){
+      this.input.date = new Date().toISOString();
+      this.account.addTransaction({data: this.input});
+      this.$parent.showOverview();
+    }
+  }
+  ,beforeMount(){
+    this.account = account;
   }
 };
 
@@ -13,15 +33,43 @@ module.exports = {
 
 <template><span>
 
-<div class="panel panel-success">
+<div class="panel panel-default">
   <div class="panel-heading">
     <h3 class="panel-title">Add transaction</h3>
   </div>
   <div class="panel-body">
-    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-  </div>
-</div>
+
+    <form class="form-horizontal">
+      <div class="form-group">
+        <label for="from" class="col-sm-2 control-label">From</label>
+        <div class="col-sm-10">
+          <input v-model.trim="input.from" type="text" class="form-control" id="from" placeholder="From">
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="to" class="col-sm-2 control-label">To</label>
+        <div class="col-sm-10">
+          <input v-model.trim="input.to" type="text" class="form-control" id="to" placeholder="To">
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="descr" class="col-sm-2 control-label">Description</label>
+        <div class="col-sm-10">
+          <input v-model.trim="input.description" type="text" class="form-control" id="descr" placeholder="Description">
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="amount" class="col-sm-2 control-label">Amount</label>
+        <div class="col-sm-10">
+          <input v-model.number="input.amount" type="number" class="form-control" id="amount" placeholder="Amount">
+        </div>
+      </div>
+    </form>
+    <button class="btn btn-primary" @click="submit()">Submit</button>
+  </div> <!-- panel body -->
+</div> <!-- panel -->
+
+<!-- <pre>{{input}}</pre> -->
 
 </span></template>
 
