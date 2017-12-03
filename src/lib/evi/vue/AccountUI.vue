@@ -16,8 +16,8 @@ module.exports = {
     this.account = account;
   }
   ,methods: {
-    showAddTransaction(){
-      this.mode = "add-transaction";
+    showAddTransaction(type){
+      this.mode = "add-"+type;
     }
     ,showOverview(){
       this.mode = "overview";
@@ -46,13 +46,15 @@ module.exports = {
   </div> <!-- col -->
 
   <div class="col col-lg-6 col-lg-offset-3">
-    <button @click="showAddTransaction()"
-      v-if="mode == 'overview'"
-      class="btn btn-lg btn-primary">Add transaction</button>
-    <add-transaction v-if="mode == 'add-transaction'"/>
+    <button @click="showAddTransaction('debit')" v-if="mode === 'overview'"
+      class="btn btn-lg btn-primary">Add debit</button>
+    <button @click="showAddTransaction('credit')" v-if="mode === 'overview'"
+      class="btn btn-lg btn-primary">Add credit</button>
+    <add-transaction v-if="mode === 'add-debit'" mode="debit"/>
+    <add-transaction v-if="mode === 'add-credit'" mode="credit"/>
   </div> <!-- col -->
 
-  <div v-if="mode == 'overview'" class="col col-lg-6 col-lg-offset-3">
+  <div v-if="mode === 'overview'" class="col col-lg-6 col-lg-offset-3">
     <transactions :account="account" />
   </div> <!-- col -->
 

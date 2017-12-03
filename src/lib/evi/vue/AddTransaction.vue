@@ -4,10 +4,10 @@ const account = require("../account.singleton.js");
 
 module.exports = {
    name: "add-transaction"
+  ,props: ["mode"]
   ,data(){
     return {
        account: null
-      ,mode: "to"
       ,input: {
          from: ""
         ,to: ""
@@ -20,7 +20,11 @@ module.exports = {
   ,methods: {
     submit(){
       this.input.date = new Date().toISOString();
+      this.mode === "debit" ? this.input.amount = -this.input.amount : void 0;
       this.account.addTransaction({data: this.input});
+      this.$parent.showOverview();
+    }
+    ,cancel(){
       this.$parent.showOverview();
     }
   }
@@ -40,13 +44,13 @@ module.exports = {
   <div class="panel-body">
 
     <form class="form-horizontal">
-      <div class="form-group">
+      <div v-if="mode === 'credit'" class="form-group">
         <label for="from" class="col-sm-2 control-label">From</label>
         <div class="col-sm-10">
           <input v-model.trim="input.from" type="text" class="form-control" id="from" placeholder="From">
         </div>
       </div>
-      <div class="form-group">
+      <div v-if="mode === 'debit'" class="form-group">
         <label for="to" class="col-sm-2 control-label">To</label>
         <div class="col-sm-10">
           <input v-model.trim="input.to" type="text" class="form-control" id="to" placeholder="To">
@@ -65,6 +69,7 @@ module.exports = {
         </div>
       </div>
     </form>
+    <button class="btn btn-default" @click="cancel()">Cancel</button>
     <button class="btn btn-primary" @click="submit()">Submit</button>
   </div> <!-- panel body -->
 </div> <!-- panel -->
