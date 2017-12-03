@@ -1,8 +1,8 @@
 const Vue = require("vue");
-const app = require("./lib/account");
-global._app = app;
+const evi = require("./lib/evi");
+global._evi = evi;
 
 new Vue({
-  el: '#app',
-  render: (h) => h(app.vue)
+  el: '#evi',
+  render: (h) => h(evi.vue)
 });

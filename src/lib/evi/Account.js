@@ -5,17 +5,17 @@ class Account {
   constructor(){
     this.api = api;
     this._data;
-    this.name;
-    this.iban;
-    this.balance;
-    this.currency;
+    this.name = "";
+    this.iban = "";
+    this.balance = null;
+    this.currency = "";
     this.transactions = [];
 
     this.sync();
   }
 
   sync(){
-    this.api.getBalance()
+    this.api.balance()
     .then(data=>{
       this._data = data;
       this.setData(data);
@@ -36,7 +36,7 @@ class Account {
   addTransaction(options){
     const op = options || {};
     const data = op.data;
-    this.api.addTransaction({data})
+    this.api.balanceAdd({data})
     .then(d=>{
       cl(d);
       this.sync();

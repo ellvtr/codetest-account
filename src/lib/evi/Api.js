@@ -10,7 +10,7 @@ class Api {
     };
   }
 
-  getBalance(){
+  balance(){
     return new Promise((resolve, reject) => {
       $.ajax({
         type: "GET",
@@ -26,7 +26,7 @@ class Api {
     }); // Promise
   } // getBalance
 
-  addTransaction(options){
+  balanceAdd(options){
     const op = options || {};
     const data = op.data;
     // Ideally validate data or throw error
