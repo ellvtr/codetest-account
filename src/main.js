@@ -1,8 +1,8 @@
 const Vue = require("vue");
-const account = require("./lib/account");
-global._api = account.api;
+const app = require("./lib/account");
+global._app = app;
 
 new Vue({
   el: '#app',
-  render: (h) => h(account.vue)
+  render: (h) => h(app.vue)
 });

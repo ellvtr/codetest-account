@@ -1,6 +1,6 @@
-const Api = require("./Api");
+const account = require("./account.singleton.js");
 
 module.exports = {
-   api: new Api()
+   account
   ,vue: require("./vue/Account.vue")
 };
