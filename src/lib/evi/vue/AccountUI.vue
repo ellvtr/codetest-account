@@ -29,7 +29,7 @@ module.exports = {
 
 <template><span>
 <div class="container">
-<div class="row">
+<div class="row row-1">
 
   <div class="col col-lg-6 col-lg-offset-3">
     <div class="panel panel-primary">
@@ -46,13 +46,18 @@ module.exports = {
   </div> <!-- col -->
 
   <div class="col col-lg-6 col-lg-offset-3">
+    <div class="btn-block">
     <button @click="showAddTransaction('debit')" v-if="mode === 'overview'"
-      class="btn btn-lg btn-primary">Add debit</button>
+      class="btn btn-lg btn-primary btn-trans">Add debit</button>
     <button @click="showAddTransaction('credit')" v-if="mode === 'overview'"
-      class="btn btn-lg btn-primary">Add credit</button>
+      class="btn btn-lg btn-primary btn-trans pull-right">Add credit</button>
     <add-transaction v-if="mode === 'add-debit'" mode="debit"/>
     <add-transaction v-if="mode === 'add-credit'" mode="credit"/>
+    </div>
   </div> <!-- col -->
+
+</div> <!-- row -->
+<div class="row row-2">
 
   <div v-if="mode === 'overview'" class="col col-lg-6 col-lg-offset-3">
     <transactions :account="account" />
@@ -63,7 +68,24 @@ module.exports = {
 </span></template>
 
 <style scoped>
+.container {
+  height: 100%;
+}
 .panel {
   margin-top: 1rem;
 }
+.btn-block {
+  margin: 0 auto 1rem auto; 
+  width: 60%;
+}
+.btn-trans {
+  width: 45%;
+}
+/*.row-1 {
+  max-height: 40%;
+}
+.row-2 {
+  max-height: 40%;
+  overflow-y: scroll;
+}*/
 </style>

@@ -6,7 +6,7 @@
   "private": true,
   "scripts": {
     "watchify": "watchify -vd -p browserify-hmr -e src/main.js -o www/dist/build.js",
-    "api": "nodemon apiserver/server.js",
+    "api": "nodemon -w apiserver apiserver/server.js",
     "api2": "node apiserver/server.js",
     "serve": "http-server www -o -p 8888 -c-1 -a localhost -P http://localhost:8080",
     "serve2": "http-server www -p 8888 -c-1 -a localhost -P http://localhost:8080",

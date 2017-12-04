@@ -15,6 +15,7 @@ module.exports = {
         ,amount: null
         ,date: ""
       }
+      ,warning: ""
     };
   }
   ,methods: {
@@ -22,10 +23,23 @@ module.exports = {
       this.input.date = new Date().toISOString();
       this.mode === "debit" ? this.input.amount = -this.input.amount : void 0;
       this.account.addTransaction({data: this.input});
+      this.warning = "";
       this.$parent.showOverview();
     }
     ,cancel(){
       this.$parent.showOverview();
+    }
+    ,validate(){
+      let re = true;
+      re = this.input.amount > 0 ? true : false;
+      this.mode === "debit" && !this.input.to ? re = false : void 0;
+      this.mode === "credit" && !this.input.from ? re = false : void 0;
+      return re;
+    }
+    ,trySubmit(){
+      this.validate() ? 
+        this.submit() :
+        this.warning = "Invalid input!";
     }
   }
   ,beforeMount(){
@@ -39,10 +53,11 @@ module.exports = {
 
 <div class="panel panel-default">
   <div class="panel-heading">
-    <h3 class="panel-title">Add transaction</h3>
+    <h3 class="panel-title">Add {{mode}}</h3>
   </div>
   <div class="panel-body">
 
+    <h3 v-if="warning" class="bg-warning">{{warning}}</h3>
     <form class="form-horizontal">
       <div v-if="mode === 'credit'" class="form-group">
         <label for="from" class="col-sm-2 control-label">From</label>
@@ -70,7 +85,7 @@ module.exports = {
       </div>
     </form>
     <button class="btn btn-default" @click="cancel()">Cancel</button>
-    <button class="btn btn-primary" @click="submit()">Submit</button>
+    <button class="btn btn-primary" @click="trySubmit()">Submit</button>
   </div> <!-- panel body -->
 </div> <!-- panel -->
 
