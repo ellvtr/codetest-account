@@ -15,6 +15,12 @@ module.exports = {
   ,beforeMount(){
     this.account = account;
   }
+  ,mounted(){
+    // Set rows to fill screen vertically:
+    const h = $(document).innerHeight();
+    $(".row-1").css("height", h*0.38);
+    $(".row-2").css("height", h*0.58);
+  }
   ,methods: {
     showAddTransaction(type){
       this.mode = "add-"+type;
@@ -59,7 +65,7 @@ module.exports = {
 </div> <!-- row -->
 <div class="row row-2">
 
-  <div v-if="mode === 'overview'" class="col col-lg-6 col-lg-offset-3">
+  <div v-if="mode === 'overview'" class="col col-lg-6 col-lg-offset-3 transactions">
     <transactions :account="account" />
   </div> <!-- col -->
 
@@ -82,10 +88,8 @@ module.exports = {
   width: 45%;
 }
 /*.row-1 {
-  max-height: 40%;
-}
-.row-2 {
-  max-height: 40%;
-  overflow-y: scroll;
 }*/
+.row-2 {
+  overflow-y: auto;
+}
 </style>

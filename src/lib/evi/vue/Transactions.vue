@@ -7,6 +7,14 @@ module.exports = {
       msg: "Some Message"
     };
   }
+  ,methods: {
+    toDate(str){
+      return new Date(str).toDateString();
+    }
+    ,toTime(str){
+      return new Date(str).toLocaleTimeString();
+    }
+  }
 };
 
 </script>
@@ -21,6 +29,7 @@ module.exports = {
       <th>Description</th>
       <th>Amount</th>
       <th>Date</th>
+      <th>Time</th>
     </tr>
   </thead>
   <tbody>
@@ -29,7 +38,8 @@ module.exports = {
       <td>{{tran.to}}</td>
       <td>{{tran.description}}</td>
       <td>{{tran.amount}}</td>
-      <td>{{tran.date}}</td>
+      <td>{{toDate(tran.date)}}</td>
+      <td>{{toTime(tran.date)}}</td>
     </tr>
   </tbody>
 </table>
