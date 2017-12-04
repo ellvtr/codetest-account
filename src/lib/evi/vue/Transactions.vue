@@ -21,7 +21,7 @@ module.exports = {
 
 <template><span>
 
-<table class="table table-striped">
+<table class="table table-striped table-responsive">
   <thead>
     <tr>
       <th>From</th>

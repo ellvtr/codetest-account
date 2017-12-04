@@ -88,7 +88,9 @@ module.exports = {
 }
 .btn-block {
   margin: 0 auto 1rem auto; 
-  width: 60%;
+  /*width: 60%;*/
+  min-width: 30rem;
+  max-width: 80%;
 }
 .btn-trans {
   width: 45%;
