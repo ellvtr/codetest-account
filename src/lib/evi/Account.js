@@ -10,6 +10,8 @@ class Account {
     this.balance = null;
     this.currency = "";
     this.transactions = [];
+    this.noSync = true;
+    this.transactionFailed = false;
 
     this.sync();
   }
@@ -19,8 +21,10 @@ class Account {
     .then(data=>{
       this._data = data;
       this.setData(data);
+      this.noSync = false;
     })
     .catch(e=>{
+      this.noSync = true;
       throw new Error("Account.sync error: " + e);
     });
   }
@@ -38,11 +42,12 @@ class Account {
     const data = op.data;
     this.api.balanceAdd({data})
     .then(d=>{
-      cl(d);
+      this.transactionFailed = false;
       this.sync();
     })
     .catch(e=>{
-      cl(e);
+      this.transactionFailed = true;
+      throw new Error("Account.addTransaction error: " + e);
     });
   }
 

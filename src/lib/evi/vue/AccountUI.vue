@@ -66,7 +66,12 @@ module.exports = {
 <div class="row row-2">
 
   <div v-if="mode === 'overview'" class="col col-lg-6 col-lg-offset-3 transactions">
-    <transactions :account="account" />
+    <transactions v-if="!account.noSync" :account="account" />
+    <div v-else class="bg-warning">
+      <h3>Oops!</h3>
+      <p>Failed to syncronize with the server.</p>
+      <button @click="account.sync()" class="btn btn-primary">Please try again</button>
+    </div>
   </div> <!-- col -->
 
 </div> <!-- row -->
