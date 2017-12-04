@@ -16,13 +16,13 @@ are proxied on to 8080.
 ## Comments
 3rd party components used:
 
-* Frontend framework [VueJS](https://vuejs.org/) used in 
+* Frontend library [VueJS](https://vuejs.org/) used in 
 order to increase productivity. The result is a more responsive
 and complete UI/UX because the faster work-flow allows me to 
 focus on more functionality.
 
 * CSS framework [Bootstrap 3.3](https://getbootstrap.com/docs/3.3/)
-used, also in order to increase productivity and a better 
+used, also in order to boost productivity and a better 
 and more mobile friendly result.
 
 * The [jQuery](http://api.jquery.com/) library is used to handle 
