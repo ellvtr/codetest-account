@@ -29,4 +29,8 @@ and more mobile friendly result.
 cross-browser issues regarding ajax calls and DOM manipulation.
 
 * NPM packages "npm-run-all" and "http-server" are used to make
-is easier to run the app locally with NodeJS.
+it easier to run the app locally with NodeJS.
+
+* A variety of other packages are used as devDependencies to 
+improve the workflow and code structure, e.g. Browserify, 
+Babel, eslint etc.
