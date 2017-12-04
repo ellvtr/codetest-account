@@ -27,3 +27,6 @@ and more mobile friendly result.
 
 * The [jQuery](http://api.jquery.com/) library is used to handle 
 cross-browser issues regarding ajax calls and DOM manipulation.
+
+* NPM packages "npm-run-all" and "http-server" are used to make
+is easier to run the app locally with NodeJS.
