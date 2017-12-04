@@ -40,14 +40,17 @@ class Account {
   addTransaction(options){
     const op = options || {};
     const data = op.data;
-    this.api.balanceAdd({data})
-    .then(d=>{
-      this.transactionFailed = false;
-      this.sync();
-    })
-    .catch(e=>{
-      this.transactionFailed = true;
-      throw new Error("Account.addTransaction error: " + e);
+    return new Promise((resolve, reject) => {
+      this.api.balanceAdd({data})
+      .then(r=>{
+        this.transactionFailed = false;
+        this.sync();
+        resolve(r);
+      })
+      .catch(e=>{
+        this.transactionFailed = true;
+        reject(e);
+      });
     });
   }
 

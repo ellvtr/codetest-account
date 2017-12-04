@@ -20,11 +20,19 @@ module.exports = {
   }
   ,methods: {
     submit(){
-      this.input.date = new Date().toISOString();
-      this.mode === "debit" ? this.input.amount = -this.input.amount : void 0;
-      this.account.addTransaction({data: this.input});
-      this.warning = "";
-      this.$parent.showOverview();
+      this.input.date = new Date().toISOString(); // Set date and time
+      // Clone input data and add minus if debit:
+      const data = $.extend({}, this.input);
+      this.mode === "debit" ? data.amount = -data.amount : void 0;
+      // Submit transaction; return if OK, else show error:
+      this.account.addTransaction({data})
+      .then(r=>{
+        this.warning = "";
+        this.$parent.showOverview();
+      })
+      .catch(e=>{
+        this.warning = "Failed to contact server, please try again.";
+      });
     }
     ,cancel(){
       this.$parent.showOverview();
@@ -39,7 +47,7 @@ module.exports = {
     ,trySubmit(){
       this.validate() ? 
         this.submit() :
-        this.warning = "Invalid input!";
+        this.warning = "Invalid input.";
     }
   }
   ,beforeMount(){
@@ -57,7 +65,10 @@ module.exports = {
   </div>
   <div class="panel-body">
 
-    <h3 v-if="warning" class="bg-warning">{{warning}}</h3>
+    <div v-if="warning" class="bg-warning">
+      <h3>Oops!</h3>
+      <p>{{warning}}</p>
+    </div>
     <form class="form-horizontal">
       <div v-if="mode === 'credit'" class="form-group">
         <label for="from" class="col-sm-2 control-label">From</label>
