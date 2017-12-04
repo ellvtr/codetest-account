@@ -1,4 +1,4 @@
-const cl = console.log; cl;
+const cl = console.log; cl; // avoid linting error
 const api = require("./api.singleton.js");
 
 class Account {

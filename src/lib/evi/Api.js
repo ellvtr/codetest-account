@@ -1,5 +1,5 @@
-const cl = console.log; cl;
-const $ = global.$;
+const cl = console.log; cl; // avoid linting error
+const $ = require("jquery");
 
 class Api {
 

@@ -1,4 +1,5 @@
 <script>
+const $ = require("jquery");
 const account = require("../account.singleton.js");
 const Transactions = require("./Transactions.vue");
 const AddTransaction = require("./AddTransaction.vue");

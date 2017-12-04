@@ -1,5 +1,6 @@
 <script>
-const cl = console.log; cl;
+const cl = console.log; cl; // avoid linting error
+const $ = require("jquery");
 const account = require("../account.singleton.js");
 
 module.exports = {
@@ -39,7 +40,7 @@ module.exports = {
     }
     ,validate(){
       let re = true;
-      re = this.input.amount > 0 ? true : false;
+      re = this.input.amount > 0;
       this.mode === "debit" && !this.input.to ? re = false : void 0;
       this.mode === "credit" && !this.input.from ? re = false : void 0;
       return re;
