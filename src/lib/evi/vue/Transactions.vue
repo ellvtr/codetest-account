@@ -14,6 +14,19 @@ module.exports = {
     ,toTime(str){
       return new Date(str).toLocaleTimeString();
     }
+    ,to(tran){
+      return tran.to ? "to: " + tran.to : null;
+    }
+    ,from(tran){
+      return tran.from ? "from: " + tran.from : null;
+    }
+    ,toFrom(tran){
+      return this.to(tran) || this.from(tran);
+    }
+    ,amount(tran){
+      const am = tran.to && tran.amount > 0 ? -tran.amount : tran.amount;
+      return am.toFixed(2);
+    }
   }
 };
 
@@ -24,22 +37,21 @@ module.exports = {
 <table class="table table-striped table-responsive">
   <thead>
     <tr>
-      <th>From</th>
-      <th>To</th>
-      <th>Description</th>
-      <th>Amount</th>
       <th>Date</th>
       <th>Time</th>
+      <th>To/From</th>
+      <th>Description</th>
+      <th class="txt-right">Amount</th>
     </tr>
   </thead>
   <tbody>
     <tr v-for="tran in account.transactions">
-      <td>{{tran.from}}</td>
-      <td>{{tran.to}}</td>
-      <td>{{tran.description}}</td>
-      <td>{{tran.amount}}</td>
       <td>{{toDate(tran.date)}}</td>
       <td>{{toTime(tran.date)}}</td>
+      <td>{{ toFrom(tran) }}</td>
+      <td>{{tran.description}}</td>
+      <td class="txt-right">{{ amount(tran) }}</td>
+      <!-- <td>{{tran.amount}}</td> -->
     </tr>
   </tbody>
 </table>
@@ -47,4 +59,7 @@ module.exports = {
 </span></template>
 
 <style scoped>
+.txt-right {
+  text-align: right;
+}
 </style>
