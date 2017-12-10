@@ -1,6 +1,7 @@
 node_modules
 .dockerignore
-Dockerfile
-build_image.sh
-run_docker.sh
+#Dockerfile
+#build_image.sh
+#run_docker.sh
+trun_docker.sh
 pages.sh

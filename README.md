@@ -2,7 +2,7 @@
 code test, see `assignment.md` for specifications.
 
 ## Run locally
-Requires [NodeJS](https://nodejs.org/en/), install if you don't have it.
+With [NodeJS](https://nodejs.org/en/); 
 Clone this repo; in a terminal, go to the repo directory and type:
 ```bash
 npm install --production
@@ -12,6 +12,13 @@ npm run prod
 The app will run by default on http://localhost:8888/.
 The api server runs on port 8080; api requests to 8888
 are proxied on to 8080.
+
+With [Docker](https://www.docker.com/); to run on port 9999 type:
+```bash
+docker run --name account -d -p 9999:8888 ellvtr/codetest-account
+# or use the script:
+./run_docker.sh
+```
 
 ## Comments
 3rd party components used:
