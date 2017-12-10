@@ -47,7 +47,9 @@ module.exports = {
         <label>Name:</label> {{account.name}} <br/>
         <label>IBAN:</label> {{account.iban}} <br/>
         <label>Currency:</label> {{account.currency}} <br/>
-        <label>Balance:</label> {{account.balance}} <br/>
+        <label>Balance:</label> 
+          {{ account.balance ? account.balance.toFixed(2) : null }} <br/>
+        <!-- <label>Balance:</label> {{account.balance}} <br/> -->
       </div>
     </div>
   </div> <!-- col -->

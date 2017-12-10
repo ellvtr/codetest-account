@@ -1,5 +1,5 @@
 # Account Balance
-code test, see `assignment.md` for specifications.
+Code test, see [assignment.md](assignment.md) for specifications.
 
 ## Run locally
 With [NodeJS](https://nodejs.org/en/); 
